@@ -1,0 +1,12 @@
+/*
+----------------------------------------
+Custom project SASS goes here. e.g.
+@include u-padding-right('05');
+----------------------------------------
+*/
+
+@use "uswds-core" as *;
+
+.usa-hero {
+    background-image: url(/img/hero.png)
+}

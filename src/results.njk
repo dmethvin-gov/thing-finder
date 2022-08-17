@@ -1,0 +1,117 @@
+---
+layout: base
+description: "Search results"
+translation:
+    "Search criteria":
+        es: "Reglas de búsqueda"
+    "Something Search":
+        es: "Búsqueda de algun"
+    "Zip Code":
+        es: "Código postal"
+    "Search":
+        es: "Búsqueda"
+    "Search results":
+        es: "Resultados de la búsqueda"
+    "Product image":
+        es: "Imagen del producto"
+    "*COUNT_PRODUCTS":
+        en: "`PRODUCT_COUNT` products available"
+        es: "`PRODUCT_COUNT` productos disponibles"
+    "*WITHIN_MILES":
+        en: "Within `MILES` miles of `ZIP`"
+        es: "Cerca de `MILES` miles de `ZIP`"
+    "*IN_STOCK":
+        en: "In stock at `STORE_COUNT` stores"
+        es: "Hay stock en `STORE_COUNT` tiendas"
+---
+
+<style>
+    .criteria {
+        display: flex;
+        margin: 1rem;
+    }
+    .criteria .search {
+        flex: 0 1 auto;
+        flex-basis: 20rem;
+        margin-right: 1rem;
+    }
+    .criteria .zip {
+        flex: 0 1 auto;
+        flex-basis: 7rem;
+        margin-right: 1rem;
+    }
+    .criteria .submit {
+        flex: 0 1 auto;
+        height: 2.5rem;
+        align-self: flex-end;
+    }
+    .results .summary {
+        margin: 1rem;
+    }
+</style>
+<section class="usa-section criteria" aria-label="{% xlate "Search criteria", translation %}">
+    <div class="search">
+        <label class="usa-label" for="input-type-text">{% xlate "Something Search", translation %}</label>
+        <input class="usa-input" id="input-type-text" name="input-type-text"/>
+    </div>
+    <div class="zip">
+        <label class="usa-label" for="input-type-text">{% xlate "Zip Code", translation %}</label>
+        <input class="usa-input" id="input-type-text" name="input-type-text"/>
+    </div>
+    <button class="usa-button submit">{% xlate "Search", translation %}</button>
+</section>
+<section class="usa-section results" aria-label="{% xlate "Search results", translation %}"></section>
+<template id="search-results-template">
+    <div class="summary">
+        <strong>{% xlate "*COUNT_PRODUCTS", translation %}</strong><br/> {% xlate "*WITHIN_MILES", translation %}
+    </div>
+    <div class="grid-container">
+        <ul class="usa-card-group product-list-items"></ul>
+    </div>
+</template>
+<template id="product-listing-template">
+    <li class="usa-card tablet:grid-col-4">
+        <div class="usa-card__container">
+            <div class="usa-card__media--inset">
+                <div class="usa-card__img">
+                    <img src="`PRODUCT_IMAGE`" alt="{% xlate "Product image", translation %}"/>
+                </div>
+            </div>
+            <div class="usa-card__header">
+                <h2 class="usa-card__heading">`PRODUCT_NAME`</h2>
+            </div>
+            <div class="usa-card__body">
+                <p>{% xlate "*WITHIN_MILES", translation %}</p>
+            </div>
+            <div class="usa-card__footer">
+                <a href="`PRODUCT_DETAIL_PAGE`">{% xlate "*IN_STOCK", translation %}</button>
+            </div>
+        </div>
+    </li>
+</template>
+<script src="/js/utils.js"></script>
+<script>
+    const zip = "20910";
+    function heading(count, distance, zip) {
+        fillTemplate("search-results-template", {
+            PRODUCT_COUNT: count,
+            MILES: distance,
+            ZIP: zip
+        }, ".results");
+    };
+    function entry(name, image, url, dist, stores) {
+        fillTemplate("product-listing-template", {
+            PRODUCT_NAME: name,
+            PRODUCT_IMAGE: image,
+            PRODUCT_DETAIL_PAGE: url,
+            MILES: dist,
+            ZIP: zip,
+            STORE_COUNT: stores
+        }, ".product-list-items");
+    };
+    heading(4, 50, zip);
+    entry("Most Excellent Thing", "https://placekitten.com/200/200", "https://google.com", 1.7, 17);
+    entry("Super Duper Stuff", "https://placekitten.com/202/202", "https://google.com", 5.1, 4);
+    entry("Pretty Good Product", "https://placekitten.com/201/201", "https://google.com", 20, 9);
+    entry("Good Stuff Awesome", "https://placekitten.com/204/204", "https://google.com", 13, 1);
+</script>

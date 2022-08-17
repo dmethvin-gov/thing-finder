@@ -1,0 +1,67 @@
+---
+translation:
+  "Something Finder":
+    es: "Buscar Algun"
+  "Skip to main content":
+    es: "Saltar al contenido principal"
+  "Footer navigation":
+    es: "Navegación"
+  "About this site":
+    es: "Sobre este sitio"
+---
+
+<!DOCTYPE html>
+<html class="no-js" lang="{{ meta.lang }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/uswds/styles.css"/>
+        <title>{% xlate "Something Finder", translation %}</title>
+        {% include "meta-tags.njk" %}
+        <script src="/uswds/js/uswds-init.min.js"></script>
+    </head>
+    <body class="site">
+        <a class="usa-skipnav" href="#main-content">{% xlate "Skip to main content", translation %}</a>
+        {% include "usa-banner.njk" %}
+        <div class="usa-overlay"></div>
+        <header class="usa-header usa-header--basic">
+            <div class="usa-nav-container">
+                <div class="usa-navbar">
+                    <div class="usa-logo" id="-logo">
+                        <em class="usa-logo__text">
+                            <a href="/" title="{% xlate "Something Finder", translation %}">{% xlate "Something Finder", translation %}</a>
+                        </em>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main id="main-content" class="main">
+            {{ content | safe }}
+        </main>
+        <footer class="usa-footer usa-footer--slim">
+            <div class="usa-footer__primary-section">
+                <div class="usa-footer__primary-container grid-row">
+                    <div class="mobile-lg:grid-col-8">
+                        <nav class="usa-footer__nav" aria-label="{% xlate "Footer navigation", translation %}">
+                            <ul class="grid-row grid-gap">
+                                <li class=" mobile-lg:grid-col-6 desktop:grid-col-auto usa-footer__primary-content ">
+                                    <a class="usa-footer__primary-link" href="/about-this-site/">{% xlate "About this site" %}</a>
+                                </li>
+                                <li class=" mobile-lg:grid-col-6 desktop:grid-col-auto usa-footer__primary-content ">
+                                    <a class="usa-footer__primary-link" href="https://google.com">[Footer link 2]</a>
+                                </li>
+                                <li class=" mobile-lg:grid-col-6 desktop:grid-col-auto usa-footer__primary-content ">
+                                    <a class="usa-footer__primary-link" href="https://google.com">[Footer link 3]</a>
+                                </li>
+                                <li class=" mobile-lg:grid-col-6 desktop:grid-col-auto usa-footer__primary-content ">
+                                    <a class="usa-footer__primary-link" href="https://google.com">[Footer link 4]</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="/uswds/js/uswds.min.js"></script>
+    </body>
+</html>

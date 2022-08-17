@@ -1,0 +1,38 @@
+{
+  "name": "generic-finder",
+  "version": "1.0.0",
+  "description": "A skeletal search-something site",
+  "scripts": {
+    "build": "run-s clean copyUSWDS buildCss buildHtml",
+    "buildHtml": "cross-env ELEVENTY_ENV=production eleventy",
+    "copyUSWDS": "npx gulp copyAssets",
+    "buildCss": "npx gulp compile",
+    "watchCss": "npx gulp watch",
+    "watchHtml": "eleventy --watch",
+    "serve": "eleventy --serve",
+    "debug": "DEBUG=* eleventy",
+    "clean": "del-cli dist",
+    "start": "run-p watchCss serve",
+    "deploy-stage": "echo TODO"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/YOURORG/YOURPROJECr"
+  },
+  "author": "Dave Methvin",
+  "license": "MIT",
+  "dependencies": {
+    "@11ty/eleventy": "^1.0.1",
+    "@uswds/compile": "^1.0.0-beta.2",
+    "@uswds/uswds": "^3.0.1",
+    "clean-css": "^4.2.3",
+    "cross-env": "^7.0.2",
+    "del-cli": "^3.0.0",
+    "dotenv": "^8.2.0",
+    "htmlnano": "^0.2.5",
+    "luxon": "^1.22.0",
+    "markdown-it": "^13.0.1",
+    "markdown-it-anchor": "^5.2.5",
+    "npm-run-all": "^4.1.5"
+  }
+}

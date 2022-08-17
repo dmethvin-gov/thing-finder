@@ -1,0 +1,18 @@
+@use "uswds-core" with (
+  $theme-image-path: "/uswds/img",
+  $theme-font-path: "/uswds/fonts",
+  $theme-show-compile-warnings: true,
+  $theme-show-notifications: false,
+  $theme-banner-max-width: "none",
+  $theme-utility-breakpoints: (
+    "card": false,
+    "card-lg": false,
+    "mobile": false,
+    "mobile-lg": true,
+    "tablet": true,
+    "tablet-lg": false,
+    "desktop": true,
+    "desktop-lg": false,
+    "widescreen": false
+  ),
+);

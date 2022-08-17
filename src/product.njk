@@ -1,0 +1,140 @@
+---
+layout: base
+description: "Product details"
+translation:
+    "Search criteria":
+        es: "Reglas de búsqueda"
+    "Website":
+        es: "Sitio web"
+    "miles":
+        es: "miles"
+    "Available at":
+        es: "disponible en"
+    "In stock":
+        es: "Disponible"
+    "*WITHIN_MILES":
+        en: "Within `MILES` miles of `ZIP`"
+        es: "Cerca de `MILES` miles de `ZIP`"
+    "*COUNT_PRODUCTS":
+        en: "`PRODUCT_COUNT` products available"
+        es: "`PRODUCT_COUNT` productos disponibles"
+    "*AVAILABILITY_NOTE":
+        en: "Available stock is not guaranteed and can change quickly based on
+         buying patterns. Visit the store website or call to confirm latest stock."
+---
+
+<style>
+    .main-body {
+        position: relative;
+    }
+    .heading,
+    .results {
+        margin-left: 40%;
+        margin-right: 3rem;
+    }
+    .product-image {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .store-listing-card {
+        flex-basis: 50rem;
+    }
+    .in-stock-indicator {
+        flex-basis: 6rem;
+        align-self: center;
+        margin-left: 1rem;
+    }
+    .usa-card__container {
+        display: flex;
+        flex-direction: row;
+    }
+    .green-check {
+        color: green;
+    }
+    .store-web,
+    .store-phone {
+        margin-bottom: -0.25rem;
+        color: blue;
+    }
+    .store-phone {
+        margin-left: 1rem;
+    }
+</style>
+<div class="main-body">
+    <section class="usa-section heading" aria-label="{% xlate "Product details", translation %}"></section>
+    <section class="usa-section results" aria-label="{% xlate "Search results", translation %}"></section>
+</div>
+<template id="product-details-template">
+    <h1>`PRODUCT_NAME`</h1>
+    <h2>{% xlate "*WITHIN_MILES", translation %}</h2>
+    <hr/> <img class="product-image" src="https://placekitten.com/300/300" alt="{% xlate "Product image", translation %}"/>
+    <div class="usa-alert usa-alert--warning">
+        <div class="usa-alert__body">
+            <p class="usa-alert__text">
+                {% xlate "*AVAILABILITY_NOTE", translation %}
+            </p>
+        </div>
+    </div>
+    <h3>{% xlate "Available at", translation %}:</h3>
+    <div class="grid-container">
+        <ul class="usa-card-group store-list-items"></ul>
+    </div>
+</template>
+<template id="store-listing-template">
+    <li class="usa-card store-listing-card">
+        <div class="usa-card__container">
+            <div class="in-stock-indicator">
+                <svg class="usa-icon green-check" aria-hidden="true" focusable="false" role="img">
+                    <use xlink:href="/uswds/img/sprite.svg#check_circle"></use>
+                </svg>
+                {% xlate "In stock", translation %}
+            </div>
+            <div class="store-info">
+                <div class="usa-card__header">
+                    <h2 class="usa-card__heading">`NAME`</h2>
+                </div>
+                <div class="usa-card__body">
+                    <p>`MILES` {% xlate "miles", translation %} &#8226; `ADDRESS`</p>
+                </div>
+                <div class="usa-card__footer">
+                    <svg class="usa-icon store-web" aria-hidden="true" focusable="false" role="img">
+                        <use xlink:href="/uswds/img/sprite.svg#public"></use>
+                    </svg>
+                    <a href="`SITE`">{% xlate "Website", translation %}</a>
+                    <svg class="usa-icon store-phone" aria-hidden="true" focusable="false" role="img">
+                        <use xlink:href="/uswds/img/sprite.svg#phone"></use>
+                    </svg>
+                    <a href="tel:`PHONE`">`PHONE`</a>
+                </div>
+            </li>
+        </div>
+    </li>
+</template>
+<script src="/js/utils.js"></script>
+<script>
+    // fill with fake data for now
+    const zip = "20910";
+    function heading(name, image, distance, zip) {
+        fillTemplate("product-details-template", {
+            PRODUCT_NAME: name,
+            PRODUCT_IMAGE: image,
+            MILES: distance,
+            ZIP: zip
+        }, ".heading");
+    };
+    function entry(name, addr, url, dist, phone) {
+        fillTemplate("store-listing-template", {
+            NAME: name,
+            ADDRESS: addr,
+            SITE: url,
+            MILES: dist,
+            PHONE: phone
+        }, ".store-list-items");
+    };
+    heading("Similac Pretty Good", "https://placekitten.com/150/150", 50, zip);
+    entry("Kroger #123", "3456 Main St., Anytown, MD  20910", "https://google.com", 1.7, "555-555-1212");
+    entry("Kroger #456", "3456 Main St., Anytown, MD  20910", "https://google.com", 1.7, "555-555-1212");
+    entry("Kroger #789", "3456 Main St., Anytown, MD  20910", "https://google.com", 1.7, "555-555-1212");
+</script>
