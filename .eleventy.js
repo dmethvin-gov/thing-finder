@@ -38,8 +38,13 @@ module.exports = function (config) {
   // Layouts
   config.addLayoutAlias("base", "base.njk");
 
-  // Pass-through files
-  config.addPassthroughCopy({ "src/static": "." });
+  //
+  config.addPassthroughCopy({
+    "src/static": "./static",
+    "node_modules/@uswds/uswds/dist/fonts": "./uswds/fonts",
+    "node_modules/@uswds/uswds/dist/img": "./uswds/img",
+    "node_modules/@uswds/uswds/dist/js": "./uswds/js",
+  });
 
   // Deep-Merge
   config.setDataDeepMerge(true);

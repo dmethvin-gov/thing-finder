@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "A skeletal search-something site",
   "scripts": {
-    "build": "run-s clean copyUSWDS buildCss buildHtml",
+    "build": "run-s clean buildCss buildHtml",
     "buildHtml": "cross-env ELEVENTY_ENV=production eleventy",
-    "copyUSWDS": "npx gulp copyAssets",
     "buildCss": "npx gulp compile",
     "watchCss": "npx gulp watch",
     "watchHtml": "eleventy --watch",
@@ -17,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/YOURORG/YOURPROJECr"
+    "url": "http://github.com/YOURORG/YOURPROJECT"
   },
   "author": "Dave Methvin",
   "license": "MIT",
